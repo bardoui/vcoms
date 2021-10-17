@@ -1,6 +1,6 @@
 {
     "name": "@bardoui/vcoms",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "private": false,
     "description": "A set of vue 3 components",
     "license": "ISC",
