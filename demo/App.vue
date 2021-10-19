@@ -11,12 +11,7 @@
             <div class="wrapper">
                 <div class="container is-padding-less">
                     <inputs />
-                    <section>
-                        <input inputmode="decimal" />
-                        <input inputmode="numeric" />
-                        <input inputmode="email" />
-                        <input inputmode="url" />
-                    </section>
+                    <data-view />
                 </div>
             </div>
         </div>
@@ -24,6 +19,7 @@
 </template>
 <script lang="ts" setup>
 import Inputs from "./Inputs.vue";
+import DataView from "./DataView.vue";
 </script>
 
 <style lang="scss">

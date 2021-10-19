@@ -138,3 +138,50 @@ const v = ref(0);
 | separator | `String` | `","`                                   | number format separator              |
 | easing    | `String` | `"cubicBezier(0.25, 0.46, 0.45, 0.94)"` | animation easing                     |
 | duration  | `Number` | `750`                                   | animation duration in (milliseconds) |
+
+## DataView
+
+Data view container for lists rendering.
+
+```vue
+<template>
+  <vDataView :data="records" :error="error">
+    <template #error="{ error }">{{ error }} occurred!</template>
+    <template #empty>No records exists</template>
+    <template #default="{ records }">
+      <!-- Show cards layout on mobile  -->
+      <div class="my-card-layout show-on-mobile">
+        <div v-for="(item, index) in records" :key="index">
+          <p>{{ item.name }}</p>
+        </div>
+      </div>
+      <!-- Show table on other devices  -->
+      <table class="hide-on-mobile">
+        <tbody>
+          <tr v-for="(item, index) in records" :key="index">
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </template>
+  </vDataView>
+</template>
+```
+
+Data View have three slots:
+
+- **error**: content for render when error property not a falsy value (error passed as scoped-slot value).
+- **empty**: content to render when no record exists.
+- **default**: list views to render (records passed as scoped-slot value).
+
+**Note**: Data view have no wrapper element and rendered directly in dom!
+
+**Note**: for safe list rendering use records scoped-slot!
+
+**Note**: you can use multiple list renderer for different device with default [Termeh](https://github.com/bardoui/termeh) visibility classes (like above example).
+
+| Property | Type         | Default | Description   |
+| :------- | :----------- | :------ | :------------ |
+| data     | `Array|null` | `null`  | data records  |
+| error    | `any`        | `null`  | error message |
