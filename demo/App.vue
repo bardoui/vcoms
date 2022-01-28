@@ -1,7 +1,7 @@
 <template>
     <div class="layout">
         <div class="attachment">
-            <div class="container is-padding-less">
+            <div class="container is-paddingless">
                 <h2 class="is-shade-colored is-margin-less">
                     Components For Vue 3
                 </h2>
@@ -9,7 +9,7 @@
         </div>
         <div class="content">
             <div class="wrapper">
-                <div class="container is-padding-less">
+                <div class="container is-paddingless">
                     <inputs />
                     <data-view />
                 </div>

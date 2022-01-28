@@ -1,7 +1,7 @@
 import vMaskInput from "./MaskInput.vue";
 import vNumericInput from "./NumericInput.vue";
-import vJalaliInput from "./JalaliInput.vue";
+import vJalaaliInput from "./JalaaliInput.vue";
 import vNumberAnim from "./NumberAnim.vue";
 import vDataView from "./DataView.vue";
 
-export { vMaskInput, vNumericInput, vJalaliInput, vNumberAnim, vDataView };
+export { vMaskInput, vNumericInput, vJalaaliInput, vNumberAnim, vDataView };

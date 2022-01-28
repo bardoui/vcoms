@@ -1,62 +1,206 @@
 <template>
     <section>
-        <h3>Masked Input</h3>
-        <v-mask-input mask="###-###" v-model="v_mask" />
+        <div class="card">
+            <div></div>
+            <div class="section is-attached">
+                <div class="header is-left-decorated is-primary">
+                    <h3 class="is-marginless">Masked Input</h3>
+                </div>
+            </div>
+            <div class="separator is-attached"></div>
+            <div class="section">
+                <div class="meta">Fill ###-### mask</div>
+                <div class="input">
+                    <v-mask-input mask="###-###" v-model="v_mask" />
+                </div>
+            </div>
+        </div>
     </section>
+
     <section>
-        <h3>Numeric Input</h3>
-        <v-numeric-input
-            :decimal="3"
-            :min="-1000"
-            :max="Number.MAX_SAFE_INTEGER"
-            prefix="$ "
-            suffix=" #"
-            separator=" "
-            v-model="v_num"
-            @format="v_formatted = $event"
-        />
-        <br />
-        <button @click="v_num = 1010">Change 1010</button>
-        <button @click="v_num = -1000">Change -1000</button>
-        <button @click="v_num = 0.23321">Change 0.23321</button>
-        <button @click="v_num = 0">Change 0</button>
-        <br />
-        <br />
-        <p>
-            <strong>Raw:</strong>
-            <v-number-anim
-                :value="v_num"
-                :decimals="3"
-                separator="/"
-                easing="linear"
-                :duration="500"
-            >
-                <template #="{ formatted, value }">
-                    <h1>{{ formatted }}</h1>
-                    <p>{{ value }}</p>
-                </template>
-            </v-number-anim>
-            <span>{{ v_num }}</span>
-            <br />
-            <strong>Formatted:</strong>
-            <span>{{ v_formatted }}</span>
-        </p>
+        <div class="card">
+            <div></div>
+            <div class="section is-attached">
+                <div class="header is-left-decorated is-primary">
+                    <h3 class="is-marginless">Numeric Input</h3>
+                    <div>
+                        <div class="gaper is-auto">
+                            <div class="link is-shade" @click="v_num = 1234567">
+                                [ 1,234,567 ]
+                            </div>
+                            <div class="link is-shade" @click="v_num = -10000">
+                                [ -10,000 ]
+                            </div>
+                            <div class="link is-shade" @click="v_num = 0.23321">
+                                [ 0.23321 ]
+                            </div>
+                            <div class="filler"></div>
+                            <div class="divder"></div>
+                            <div class="link is-error" @click="v_num = 0">
+                                Reset To 0
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="separator is-attached"></div>
+            <div class="section">
+                <div class="input">
+                    <v-numeric-input
+                        :decimal="3"
+                        :min="-1000"
+                        :max="Number.MAX_SAFE_INTEGER"
+                        prefix="$ "
+                        suffix=" #"
+                        separator=" "
+                        v-model="v_num"
+                        @format="v_formatted = $event"
+                    />
+                </div>
+                <br />
+
+                <div>
+                    <div class="gaper is-auto">
+                        <div class="meta">Separator</div>
+                        <strong class="meta is-primary">Space Character</strong>
+                        <div class="divider"></div>
+                        <div class="meta">Min</div>
+                        <strong class="meta is-primary">-1,000</strong>
+                        <div class="divider"></div>
+                        <div class="meta">Decimals</div>
+                        <strong class="meta is-primary">3 Points</strong>
+                        <div class="filler"></div>
+                        <div class="meta">Raw</div>
+                        <strong class="meta is-primary">{{ v_num }}</strong>
+                        <div class="divider"></div>
+                        <div class="meta">Formatted</div>
+                        <strong class="meta is-primary">{{
+                            v_formatted
+                        }}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+
     <section>
-        <h3>Jalali Input</h3>
-        <blockquote>Minimum is 1400-01-03</blockquote>
-        <strong>{{ v_date }}</strong>
-        <v-jalali-input separator="/" min="1400-01-3" v-model="v_date" />
-        <button @click="v_date = '1400-12-33'">1400-12-33</button>
-        <button @click="v_date = '1400-1-1'">1400-1-1</button>
+        <div class="card">
+            <div></div>
+            <div class="section is-attached">
+                <div class="header is-left-decorated is-primary">
+                    <h3 class="is-marginless">Number Animation</h3>
+                    <div>
+                        <div class="gaper is-auto">
+                            <div
+                                class="link is-shade"
+                                @click="v_anim_num = 12345"
+                            >
+                                [ 12,345 ]
+                            </div>
+                            <div
+                                class="link is-shade"
+                                @click="v_anim_num = -10000"
+                            >
+                                [ -10,000 ]
+                            </div>
+                            <div
+                                class="link is-shade"
+                                @click="v_anim_num = 17.25"
+                            >
+                                [ 17.2566 ]
+                            </div>
+                            <div class="filler"></div>
+                            <div class="divder"></div>
+                            <div class="link is-error" @click="v_anim_num = 0">
+                                Reset To 0
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="separator is-attached"></div>
+            <div class="section">
+                <p>
+                    <v-number-anim
+                        :value="v_anim_num"
+                        :decimals="3"
+                        separator=","
+                        easing="linear"
+                        :duration="500"
+                    >
+                        <template #="{ formatted, value }">
+                            <div
+                                class="gaper is-inline is-auto is-stacked is-center-aligned"
+                            >
+                                <h1>{{ formatted }}</h1>
+                                <p class="meta">{{ value }}</p>
+                            </div>
+                        </template>
+                    </v-number-anim>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="card">
+            <div></div>
+            <div class="section is-attached">
+                <div class="header is-left-decorated is-primary">
+                    <h3 class="is-marginless">Jalaali Input</h3>
+                    <div>
+                        <div class="gaper is-auto">
+                            <div
+                                class="link is-shade"
+                                @click="v_date = '2022-03-20T00:00:00+03:30'"
+                            >
+                                [ 1400-12-29 ]
+                            </div>
+                            <div
+                                class="link is-shade"
+                                @click="v_date = '2021-03-21T00:00:00+03:30'"
+                            >
+                                [ 1400-01-01 ]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="separator is-attached"></div>
+            <div class="section">
+                <div class="meta">Minimum is 1400-01-03</div>
+                <div class="input">
+                    <v-jalaali-input
+                        separator="/"
+                        min="1400-01-03"
+                        v-model="v_date"
+                    />
+                </div>
+                <br>
+                <div>
+                    <div class="gaper is-auto">
+                        <div class="meta">Value</div>
+                        <strong class="meta is-primary">{{ v_date }}</strong>
+                        <div class="divider"></div>
+                        <div class="meta">Jalaali</div>
+                        <strong class="meta is-primary">{{
+                            jalaali(v_date)
+                        }}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </template>
 
 <script lang="ts" setup>
-import { vMaskInput, vNumericInput, vJalaliInput, vNumberAnim } from "@/vComs";
+import { vMaskInput, vNumericInput, vJalaaliInput, vNumberAnim } from "@/vComs";
 import { ref } from "vue";
+import { parse } from "@bardoui/date-utils";
 const v_mask = ref("1234");
 const v_num = ref(1234);
+const v_anim_num = ref(0);
 const v_formatted = ref("");
-const v_date = ref("1400-3-2");
+const v_date = ref("2022-01-20T00:00:00+03:30");
+const jalaali = (v: string) => parse(v).format("jYYYY-jMM-jDD");
 </script>

@@ -1,6 +1,6 @@
 {
     "name": "@bardoui/vcoms",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "private": false,
     "description": "A set of vue 3 components",
     "license": "ISC",
@@ -22,7 +22,7 @@
         "mask input",
         "numeric input",
         "number input",
-        "jalali"
+        "jalaali"
     ],
     "authors": [
         {
@@ -37,17 +37,18 @@
         "url": "https://github.com/bardoui/vcoms"
     },
     "dependencies": {
-        "@bardoui/utils": "^1.0.7",
+        "@bardoui/date-utils": "^1.0.1",
+        "@bardoui/utils": "^1.1.2",
         "@bardoui/vmask": "^1.0.3",
         "animejs": "^3.2.1",
         "core-js": "^3.6.5",
-        "jalali-moment": "^3.3.10",
-        "vue": "^3.2.13"
+        "vue": "^3.2.29"
     },
     "devDependencies": {
-        "@bardoui/termeh": "^2.1.1",
+        "@bardoui/termeh": "^3.0.0-rc.2",
         "@rollup/plugin-commonjs": "^18.0.0",
         "@types/animejs": "^3.1.4",
+        "@types/moment-jalaali": "^0.7.5",
         "@typescript-eslint/eslint-plugin": "^4.18.0",
         "@typescript-eslint/parser": "^4.18.0",
         "@vue/cli-plugin-babel": "~4.5.0",
@@ -64,7 +65,7 @@
         "rollup-plugin-scss": "^2.6.1",
         "rollup-plugin-typescript2": "^0.30.0",
         "rollup-plugin-vue": "^6.0.0",
-        "sass": "^1.26.5",
+        "sass": "^1.49.0",
         "sass-loader": "^8.0.2",
         "typescript": "^4.2.4"
     }

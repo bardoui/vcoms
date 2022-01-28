@@ -75,30 +75,34 @@ const v = ref("");
 | mask     | `string\|array\|function` |         | mask. see [vMask](https://github.com/bardoui/vmask) for more details                                                                                |
 | guide    | `String`                  | `""`    | guide character to show as placeholder                                                                                                              |
 
-## JalaliInput
+## JalaaliInput
 
-Jalali date input component.
+Jalaali date input component.
 
 **Note**: minimum and maximum check applied on v-model change and input blur on valid input only.
+
+**Note**: modal value is a standard gregorian date string.
+
+**Note**: min and max accept jalaali date string.
 
 ```vue
 <script lang="ts">
 // index.ts
-import { vJalaliInput } from "@bardoui/vcoms";
+import { vJalaaliInput } from "@bardoui/vcoms";
 import { ref } from "vue";
 const v = ref("");
 </script>
 
 <template>
-  <v-jalali-input separator="/" v-model="v" />
+  <v-jalaali-input separator="/" v-model="v" />
 </template>
 ```
 
 | Property  | Type     | Default | Description         |
 | :-------- | :------- | :------ | :------------------ |
 | separator | `String` | `"-"`   | separator string    |
-| min       | `String` | `""`    | minimum jalali date |
-| max       | `String` | `""`    | maximum jalali date |
+| min       | `String` | `""`    | minimum jalaali date |
+| max       | `String` | `""`    | maximum jalaali date |
 
 ## NumberAnim
 

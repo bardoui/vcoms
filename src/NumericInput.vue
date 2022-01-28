@@ -10,7 +10,7 @@
 import { ref, defineProps, defineEmits, watch, onMounted } from "vue";
 import { mask, vMask } from "@bardoui/vmask";
 import { computed } from "@vue/reactivity";
-import { extractNumeric, formatNumber, parseNumber } from "@bardoui/utils";
+import { extractNumeric, parseNumber } from "@bardoui/utils";
 
 // Props and emmits
 const emits = defineEmits(["update:modelValue", "format"]);
@@ -42,7 +42,7 @@ const value = computed({
     set: v => {
         _v.value = v;
         emits("format", v);
-        emits("update:modelValue", +extractNumeric(v) || 0);
+        emits("update:modelValue", parseNumber(v) || 0);
     }
 });
 // Watch props change
@@ -67,32 +67,75 @@ function useNumeral(
     min: number,
     max: number
 ) {
-    const integerPart = (s: string): string => s.split(".")[0] || "";
-    const fractionPart = (s: string): string => s.split(".")[1] || "";
-    const isSpecialState = (s: string) =>
-        ["", "-", "-0.", "0.", "0", "-0"].includes(s);
+    // helpers
+    const explodeNum = (num: string, normalize: boolean) => {
+        num = extractNumeric(num);
+        // get sign
+        const sign = num.startsWith("-") ? "-" : "";
+        num = num.replace(/[-]/g, "");
+
+        // get decimal separator
+        const sep = num.includes(".") ? "." : "";
+
+        // normalize
+        if (normalize) {
+            num = num.replace(/^0+/, "0");
+            if (num.match(/^[0][1-9]/)) {
+                num = num.replace(/^0+/, "");
+            }
+        }
+
+        // get parts
+        const integer = num.split(".")[0] || "";
+        const fraction = num.split(".")[1] || "";
+
+        return {
+            sign,
+            sep,
+            integer,
+            fraction
+        };
+    };
+    const isSpecialState = (s: string) => ["", "-", "-0", "0"].includes(s); // || s.endsWith(".");
+
     // Formatter
-    const _mask = (raw: string) =>
-        prefix
-            .concat(formatNumber(extractNumeric(raw), separator))
+    const _mask = (raw: string) => {
+        let { sign, sep, integer, fraction } = explodeNum(raw, false);
+        const chars = integer.split("").reverse();
+
+        const out: string[] = [];
+        let counter = 1;
+        for (const ch of chars) {
+            out.push(ch);
+            if (counter == 3) {
+                out.push(separator);
+                counter = 1;
+            } else {
+                counter++;
+            }
+        }
+
+        raw = sign
+            .concat(out.reverse().join(""))
+            .concat(sep)
+            .concat(fraction);
+        return prefix
+            .concat(raw)
             .concat(suffix)
             .split("")
             .map(ch => (/\d/.test(ch) ? /\d/ : { "-": /[-]/ }[ch] || ch));
+    };
     const _pipe = (conformed: string) => {
         // Parse
-        let sgn = extractNumeric(conformed)[0] === "-" ? "-" : ""; // sign
-        const raw = extractNumeric(conformed).substring(sgn ? 1 : 0); // unsigned value
-        const sep = decimal > 0 && raw.includes(".") ? "." : ""; // decimal separator
-        min >= 0 && (sgn = "");
-        // Integer
-        let integer = integerPart(raw);
-        if (integer.length > 1 && integer.startsWith("0")) {
-            integer = integer.substring(1);
-        } // remove leading zero
-        // Fraction
-        let fraction = fractionPart(raw).substring(0, decimal);
-        // Generate result number or return special state
-        const num = `${sgn}${integer}${sep}${fraction}`;
+        let { sign, sep, integer, fraction } = explodeNum(conformed, true);
+        if (min >= 0) {
+            sign = "";
+        }
+        if (decimal <= 0) {
+            sep = "";
+        }
+        fraction = fraction.substring(0, Math.max(0, decimal));
+        const num = `${sign}${integer}${sep}${fraction}`;
         if (!isSpecialState(num) && !isNaN(+num)) {
             if (+num > max) return mask(max.toString(), _mask);
             if (+num < min) return mask(min.toString(), _mask);

@@ -1,17 +1,19 @@
-@import "@bardoui/termeh/scss/core.scss";
-// Setting vars
-@include _var("font", "family", "calibri");
-@include _var("font", "size", 13px);
-@include _color("primary", #2b9348, true);
-// Loading modules
-@import "@bardoui/termeh/scss/reset.scss";
-@import "@bardoui/termeh/scss/component/layout.scss";
-@import "@bardoui/termeh/scss/component/container.scss";
-@import "@bardoui/termeh/scss/component/button.scss";
-@import "@bardoui/termeh/scss/component/flex.scss";
-@import "@bardoui/termeh/scss/component/icon.scss";
-@import "@bardoui/termeh/scss/component/card.scss";
-@import "@bardoui/termeh/scss/component/gaper.scss";
+@use "@bardoui/termeh/termeh.scss" as T;
+@use "var";
+@use "@bardoui/termeh/styles.scss";
+@use "@bardoui/termeh/layout/layout.scss";
+@use "@bardoui/termeh/layout/container.scss";
+@use "@bardoui/termeh/layout/content.scss";
+@use "@bardoui/termeh/layout/grid.scss";
+@use "@bardoui/termeh/layout/gaper.scss";
+@use "@bardoui/termeh/components/button.scss";
+@use "@bardoui/termeh/components/meta.scss";
+@use "@bardoui/termeh/components/icon.scss";
+@use "@bardoui/termeh/components/card.scss";
+@use "@bardoui/termeh/components/header.scss";
+@use "@bardoui/termeh/components/link.scss";
+@use "@bardoui/termeh/form/input.scss";
+@use "@bardoui/termeh/helpers/visibility.scss";
 
 // Custom styling
 #app {
@@ -19,8 +21,9 @@
     height: 100%;
     margin: 0;
     padding: 1rem;
-    background: _palette("shade", "50");
+    background: T.color("alternative");
 }
+
 section {
     display: block;
     padding: 1rem;
@@ -28,11 +31,12 @@ section {
         margin-bottom: 1rem;
     }
 }
+
 code {
     white-space: pre;
     margin-bottom: 1rem;
 }
 
 h3 {
-    color: readable(_color("primary"), _color("base"));
+    color: T.readable(T.color("background"), T.color("primary"));
 }
