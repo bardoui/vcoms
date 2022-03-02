@@ -52,7 +52,7 @@
                         :max="Number.MAX_SAFE_INTEGER"
                         prefix="$ "
                         suffix=" #"
-                        separator=" "
+                        separator=","
                         v-model="v_num"
                         @format="v_formatted = $event"
                     />

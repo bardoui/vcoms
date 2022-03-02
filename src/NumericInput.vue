@@ -115,6 +115,10 @@ function useNumeral(
             }
         }
 
+        if (out[out.length - 1] == separator) {
+            out.pop();
+        }
+
         raw = sign
             .concat(out.reverse().join(""))
             .concat(sep)
