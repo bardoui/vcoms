@@ -4,7 +4,7 @@
             <div></div>
             <div class="section is-attached">
                 <div class="header is-left-decorated is-primary">
-                    <h3 class="is-marginless">Masked Input</h3>
+                    <h3>Masked Input</h3>
                 </div>
             </div>
             <div class="separator is-attached"></div>
@@ -22,7 +22,7 @@
             <div></div>
             <div class="section is-attached">
                 <div class="header is-left-decorated is-primary">
-                    <h3 class="is-marginless">Numeric Input</h3>
+                    <h3>Numeric Input</h3>
                     <div>
                         <div class="gaper is-auto">
                             <div class="link is-shade" @click="v_num = 1234567">
@@ -62,7 +62,7 @@
                 <div>
                     <div class="gaper is-auto">
                         <div class="meta">Separator</div>
-                        <strong class="meta is-primary">Space Character</strong>
+                        <strong class="meta is-primary">,</strong>
                         <div class="divider"></div>
                         <div class="meta">Min</div>
                         <strong class="meta is-primary">-1,000</strong>
@@ -88,7 +88,7 @@
             <div></div>
             <div class="section is-attached">
                 <div class="header is-left-decorated is-primary">
-                    <h3 class="is-marginless">Number Animation</h3>
+                    <h3>Number Animation</h3>
                     <div>
                         <div class="gaper is-auto">
                             <div
@@ -147,7 +147,7 @@
             <div></div>
             <div class="section is-attached">
                 <div class="header is-left-decorated is-primary">
-                    <h3 class="is-marginless">Jalaali Input</h3>
+                    <h3>Jalaali Input</h3>
                     <div>
                         <div class="gaper is-auto">
                             <div

@@ -2,7 +2,7 @@
     <div class="layout">
         <div class="attachment">
             <div class="container is-paddingless">
-                <h2 class="is-shade-colored is-margin-less">
+                <h2 class="is-margin-less">
                     Components For Vue 3
                 </h2>
             </div>
