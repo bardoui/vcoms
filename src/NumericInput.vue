@@ -38,7 +38,7 @@ const maskOptions = computed(() => {
 });
 const _v = ref("");
 const value = computed({
-    get: () => _v.value,
+    get: () => _v.value || "0",
     set: v => {
         _v.value = v;
         emits("format", v);

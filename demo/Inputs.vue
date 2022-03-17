@@ -176,7 +176,7 @@
                         v-model="v_date"
                     />
                 </div>
-                <br>
+                <br />
                 <div>
                     <div class="gaper is-auto">
                         <div class="meta">Value</div>
@@ -198,7 +198,7 @@ import { vMaskInput, vNumericInput, vJalaaliInput, vNumberAnim } from "@/vComs";
 import { ref } from "vue";
 import { parse } from "@bardoui/date-utils";
 const v_mask = ref("1234");
-const v_num = ref(1234);
+const v_num = ref();
 const v_anim_num = ref(0);
 const v_formatted = ref("");
 const v_date = ref("2022-01-20T00:00:00+03:30");
