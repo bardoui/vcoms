@@ -10,6 +10,7 @@
         <div class="content">
             <div class="wrapper">
                 <div class="container is-paddingless">
+                    <Formatters />
                     <inputs />
                     <data-view />
                 </div>
@@ -19,6 +20,7 @@
 </template>
 <script lang="ts" setup>
 import Inputs from "./Inputs.vue";
+import Formatters from "./Formatters.vue";
 import DataView from "./DataView.vue";
 </script>
 

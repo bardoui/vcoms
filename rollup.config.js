@@ -3,8 +3,6 @@ import VuePlugin from "rollup-plugin-vue";
 import pkg from "./package.json";
 import typescript from "rollup-plugin-typescript2";
 import cleaner from "rollup-plugin-cleaner";
-import copy from "rollup-plugin-copy";
-import scss from "rollup-plugin-scss";
 
 export default {
     input: "src/vComs.ts",

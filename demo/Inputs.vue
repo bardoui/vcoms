@@ -162,6 +162,10 @@
                             >
                                 [ 1400-01-01 ]
                             </div>
+                            <div class="filler"></div>
+                            <div class="link is-error" @click="v_date = null">
+                                Clear
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -21,7 +21,7 @@ import { computed } from "@vue/reactivity";
 import { parse, parseFrom } from "@bardoui/date-utils";
 
 // Props and emmits
-const emits = defineEmits(["update:modelValue"]);
+const emits = defineEmits(["update:modelValue", "update:jalali"]);
 const props = defineProps({
     separator: { type: String, default: "-" },
     min: { type: String, default: "" },
@@ -49,7 +49,7 @@ const daysInMonth = (y: string, m: string) => {
     return dt.isValid() ? dt.endOf("jMonth").jDate() : 31;
 };
 const explode = (d: string) => {
-    let parts = [];
+    let parts: string[] = [];
     const date = unifySeparator(d, "-");
     if (date.includes("-")) {
         parts = date.split("-");
@@ -111,14 +111,18 @@ const norm = () => (value.value = normalize(value.value));
 onMounted(() => {
     watch(
         () => props.modelValue,
-        v => {
-            const dt = parse(v || "-");
-            if (dt.isValid()) {
-                const jd = dt.format(
-                    ["jYYYY", "jMM", "jDD"].join(props.separator)
-                );
-                if (jd != value.value) {
-                    value.value = normalize(jd);
+        (n, o) => {
+            if (o != n) {
+                const dt = parse(n || "-");
+                if (dt.isValid()) {
+                    const jd = dt.format(
+                        ["jYYYY", "jMM", "jDD"].join(props.separator)
+                    );
+                    if (jd != value.value) {
+                        value.value = normalize(jd);
+                    }
+                } else {
+                    value.value = "";
                 }
             }
         },
@@ -128,6 +132,7 @@ onMounted(() => {
     watchEffect(() => {
         const raw = unifySeparator(_v.value, "");
         const dt = parseFrom(raw.length == 8 ? raw : "", "jYYYYjMMjDD");
+        emits("update:jalali", _v.value);
         if (dt.isValid()) {
             emits("update:modelValue", dt.format());
         } else {
